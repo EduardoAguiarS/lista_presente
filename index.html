@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Presentes - Nika e Eduardo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎁</text></svg>">
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --accent: #fd79a8;
+            --success: #00b894;
+            --category-quarto: #74b9ff;
+            --category-cozinha: #55efc4;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .flor {
+            position: fixed;
+            width: 150px;
+            height: 150px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23a29bfe" opacity="0.1" d="M50 0c13.3 0 25 5 35 15 10 10 15 21.7 15 35 0 13.3-5 25-15 35-10 10-21.7 15-35 15-13.3 0-25-5-35-15C5 75 0 63.3 0 50c0-13.3 5-25 15-35C25 5 36.7 0 50 0zm0 10c-11.1 0-20 8.9-20 20s8.9 20 20 20 20-8.9 20-20-8.9-20-20-20z"/></svg>');
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
+        }
+        
+        .flor:nth-child(1) {
+            top: 10%;
+            left: -50px;
+            transform: rotate(15deg);
+            animation-delay: 0s;
+        }
+        
+        .flor:nth-child(2) {
+            bottom: 15%;
+            right: -50px;
+            transform: rotate(-15deg);
+            animation-delay: 2s;
+        }
+        
+        .flor:nth-child(3) {
+            top: 30%;
+            right: -30px;
+            transform: rotate(30deg);
+            width: 100px;
+            height: 100px;
+            animation-delay: 4s;
+        }
+        
+        .flor:nth-child(4) {
+            bottom: 25%;
+            left: -30px;
+            transform: rotate(-30deg);
+            width: 100px;
+            height: 100px;
+            animation-delay: 6s;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="white" opacity="0.05" d="M50 0c13.3 0 25 5 35 15 10 10 15 21.7 15 35 0 13.3-5 25-15 35-10 10-21.7 15-35 15-13.3 0-25-5-35-15C5 75 0 63.3 0 50c0-13.3 5-25 15-35C25 5 36.7 0 50 0zm0 10c-11.1 0-20 8.9-20 20s8.9 20 20 20 20-8.9 20-20-8.9-20-20-20z"/></svg>');
+            background-size: 200px;
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .couple-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+            display: inline-block;
+            padding: 0.5rem 2rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 1rem;
+        }
+        
+        .header-text {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+        
+        .category {
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .category-header:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+        }
+        
+        .quarto .category-icon {
+            background: var(--category-quarto);
+        }
+        
+        .cozinha .category-icon {
+            background: var(--category-cozinha);
+        }
+        
+        .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+        
+        .category.active .toggle-icon {
+            transform: rotate(180deg);
+        }
+        
+        .category-content {
+            display: none;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        .category.active .category-content {
+            display: grid;
+        }
+        
+        .gift-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .gift-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .gift-image {
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .gift-image::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0.3),
+                rgba(255, 255, 255, 0)
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite;
+        }
+        
+        .gift-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        
+        .gift-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            font-weight: 600;
+            flex-grow: 1;
+        }
+        
+        .gift-price {
+            font-size: 1.4rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .gift-installments {
+            color: var(--success);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+            margin-top: auto;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+        }
+        
+        .btn i {
+            margin-left: 5px;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            margin-top: 0.5rem;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.3s ease-out forwards;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 0;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        
+        .close-modal:hover {
+            opacity: 1;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 2rem 0;
+            color: var(--dark);
+            opacity: 0.7;
+            font-size: 0.9rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .contact-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 20px rgba(108, 92, 231, 0.5);
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            transform: scale(1.1);
+            background: var(--secondary);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes slideUp {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(15deg); }
+            50% { transform: translateY(-20px) rotate(15deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Flores animadas de fundo -->
+    <div class="flor"></div>
+    <div class="flor"></div>
+    <div class="flor"></div>
+    <div class="flor"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Lista de Presentes</h1>
+            <div class="couple-name">Nika e Eduardo</div>
+            <p class="header-text">Todos os itens que farão nosso lar mais completo e aconchegante</p>
+        </header>
+        
+        <!-- Quarto -->
+        <div class="category quarto active">
+            <div class="category-header">
+                <div class="category-title">
+                    <div class="category-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    Quarto
+                </div>
+                <div class="toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="category-content">
+                <!-- Cama Box Casal -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Cama Box Casal Herval Ômega com Pillow Top e Molas Ensacadas</h3>
+                        <div class="gift-price">R$ 1.249,00</div>
+                        <div class="gift-installments">ou 10x de R$ 129,90</div>
+                        <a href="https://www.casasbahia.com.br/cama-box-casal-herval-omega-com-pillow-top-e-molas-ensacadas-60x138x188cm-branco-cinza/p/1001209498" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Cama Box Casal Herval Ômega com Pillow Top e Molas Ensacadas">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Ventilador -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-fan"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Ventilador de Parede e Mesa WAP FLOW TURBO</h3>
+                        <div class="gift-price">R$ 202,34</div>
+                        <div class="gift-installments">ou 12x de R$ 19,84</div>
+                        <a href="https://www.mercadolivre.com.br/wap-turbo-flow-turbo-fw009218-de-mesa-50-cm-60-preto-127v-preto-plastico-8/p/MLB23370533?product_trigger_id=MLB23370534&attributes=VOLTAGE%3A127V&quantity=1" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Ventilador de Parede e Mesa WAP FLOW TURBO">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Guarda-roupa Casal -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Guarda-roupa Casal com Espelho 6 Portas 4 Gavetas Araplac Braga</h3>
+                        <div class="gift-price">R$ 1.234,91</div>
+                        <div class="gift-installments">ou 10x de R$ 129,99</div>
+                        <a href="https://www.magazineluiza.com.br/guarda-roupa-casal-com-espelho-6-portas-4-gavetas-araplac-braga/p/237759800/mo/guro/" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Guarda-roupa Casal com Espelho 6 Portas 4 Gavetas Araplac Braga">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Escrivaninha Penteadeira -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Escrivaninha Penteadeira de Canto</h3>
+                        <div class="gift-price">R$ 427,97</div>
+                        <div class="gift-installments">ou 12x de R$ 41,53</div>
+                        <a href="https://shopee.com.br/product/855489892/22592981390?d_id=1c1c6&uls_trackid=5288cevl008m&utm_content=4SUS8aeELz29rp7isgc8D8Ry1YsH" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Escrivaninha Penteadeira de Canto">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Mesa de Cabeceira -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Kit 2 Mesa De Cabeceira Para Quarto</h3>
+                        <div class="gift-price">R$ 178,90</div>
+                        <div class="gift-installments">ou 12x de R$ 17,36</div>
+                        <a href="https://shopee.com.br/Kit-2-Mesa-De-Cabeceira-Para-Quarto-Com-Pés-e-Gaveta-Com-Nicho-Criado-Com-2-Unidades-i.400814403.22493421592?sp_atk=054927ce-2202-45c4-a6cb-d3f00b929ca7&xptdk=054927ce-2202-45c4-a6cb-d3f00b929ca7" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Kit 2 Mesa De Cabeceira Para Quarto">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Cozinha -->
+        <div class="category cozinha active">
+            <div class="category-header">
+                <div class="category-title">
+                    <div class="category-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    Cozinha
+                </div>
+                <div class="toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="category-content">
+                <!-- Fogão 4 Bocas -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Fogão 4 Bocas Esmaltec Preto Ideal Super 4121</h3>
+                        <div class="gift-price">R$ 664,05</div>
+                        <div class="gift-installments">ou 5x de R$ 139,80</div>
+                        <a href="https://www.magazineluiza.com.br/fogao-4-bocas-esmaltec-preto-ideal-super-4121/p/238611700/ed/fg4b/" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Fogão 4 Bocas Esmaltec Preto Ideal Super 4121">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Aparelho de Jantar/Chá -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Aparelho de Jantar/Chá Biona Folk - 16 Peças</h3>
+                        <div class="gift-price">R$ 182,90</div>
+                        <div class="gift-installments">ou 12x de R$ 17,75</div>
+                        <a href="https://shopee.com.br/Aparelho-de-Jantar-Chá-Biona-Folk-16-Peças-i.822103155.18299606867?xptdk=200224ff-66a1-457b-856d-2bcbb9855092" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Aparelho de Jantar/Chá Biona Folk - 16 Peças">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Conjunto Sala de Jantar -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-chair"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Conjunto Sala de Jantar Mesa Tampo de Madeira com 4 Cadeiras Havana Madesa</h3>
+                        <div class="gift-price">R$ 598,49</div>
+                        <div class="gift-installments">ou 5x de R$ 126,00</div>
+                        <a href="https://www.magazineluiza.com.br/conjunto-sala-de-jantar-mesa-tampo-de-madeira-com-4-cadeiras-havana-madesa/p/hkfg9f15a3/mo/otmo/" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Conjunto Sala de Jantar Mesa Tampo de Madeira com 4 Cadeiras Havana Madesa">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Kit Potes Herméticos -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Kit Potes Herméticos Plásticos Cinza 12 Unidades Electrolux</h3>
+                        <div class="gift-price">R$ 95,94</div>
+                        <div class="gift-installments">ou 3x de R$ 35,53</div>
+                        <a href="https://www.mercadolivre.com.br/kit-potes-hermeticos-plasticos-cinza-12-unidades-electrolux/p/MLB23191928#polycard_client=recommendations_pdp-p2p&reco_backend=ranker_compl&reco_model=retrieval-ranker-complementarios&reco_client=pdp-p2p&reco_item_pos=1&reco_backend_type=low_level&reco_id=38951d83-03d3-45b9-9e78-b625f3fc2f9e&wid=MLB4328622612&sid=recos" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Kit Potes Herméticos Plásticos Cinza 12 Unidades Electrolux">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Kit Jogo Americano -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Kit 6 Peças Jogo Americano Redondo Sousplat</h3>
+                        <div class="gift-price">R$ 27,98</div>
+                        <div class="gift-installments">ou 5x de R$ 6,21</div>
+                        <a href="https://shopee.com.br/Kit-6-Peças-Jogo-Americano-Redondo-Sousplat-Cozinha-Jantar-Descanso-de-Prato-Sousplat-Cozinha-i.979724994.22397918737?xptdk=cb056409-2d29-42b2-96cf-e6102ebf5bac" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Kit 6 Peças Jogo Americano Redondo Sousplat">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Micro-ondas -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Micro-ondas Britânia 25 Litros Preto 1100w</h3>
+                        <div class="gift-price">R$ 581,98</div>
+                        <div class="gift-installments">ou 10x de R$ 58,20</div>
+                        <a href="https://www.mercadolivre.com.br/micro-ondas-britnia-25-litros-preto-1100w-bmo28-110v/p/MLB37096771?pdp_filters=item_id:MLB4720529502#is_advertising=true&searchVariation=MLB37096771&position=2&search_layout=stack&type=pad&tracking_id=f9507d7a-b6a4-4b1a-8564-170aec5ebb96&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=2&ad_click_id=MDhlMDBmOWItNDFkOC00ZWM3LTk1OGUtMWY2Y2MwYTEwZWNj" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Micro-ondas Britânia 25 Litros Preto 1100w">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Porta Condimentos -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-wine-bottle"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Porta Condimentos e Temperos</h3>
+                        <div class="gift-price">R$ 52,99</div>
+                        <div class="gift-installments">ou 10x de R$ 6,08</div>
+                        <a href="https://shopee.com.br/Porta-Condimentos-e-Temperos-Cozinha-Giratório-Suporte-com-6-Potes-em-Vidro-Suporte-i.487505431.23792503127?sp_atk=ef0cb93e-7b39-454e-9bbf-8d230bc188ab&xptdk=ef0cb93e-7b39-454e-9bbf-8d230bc188ab" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Porta Condimentos e Temperos">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Marinex Kit -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-drumstick-bite"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Marinex Kit com duas travessas</h3>
+                        <div class="gift-price">R$ 93,41</div>
+                        <div class="gift-installments">ou 5x de R$ 6,21</div>
+                        <a href="https://shopee.com.br/Assadeira-lasanheira-de-vidro-com-tampa-Marinex-kit-2-Travessa-5-litros-e-3.7-litros-i.754034784.23393674546?sp_atk=192aee2c-1137-4a9a-ab7a-810f265fbdc3&xptdk=192aee2c-1137-4a9a-ab7a-810f265fbdc3" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Marinex Kit com duas travessas">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Pano de Prato -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Pano de Prato Gourmet Minimalista</h3>
+                        <div class="gift-price">R$ 35,90</div>
+                        <div class="gift-installments">ou 7x de R$ 5,75</div>
+                        <a href="https://shopee.com.br/Pano-de-Prato-Gourmet-Minimalista-Pé-De-Galinha-5-Unid-i.404710057.22119800575?sp_atk=7b919fa5-09ab-4656-af5a-148085515ba3&xptdk=7b919fa5-09ab-4656-af5a-148085515ba3" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Pano de Prato Gourmet Minimalista">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Escorredor Organizador -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-plate-wheat"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Escorredor Organizador de Louças</h3>
+                        <div class="gift-price">R$ 209,00</div>
+                        <div class="gift-installments">ou 12x de R$ 14,36</div>
+                        <a href="https://shopee.com.br/product/1258087913/23997759428?d_id=1c1c6&uls_trackid=52882vrv018l&utm_content=4SUS8aeELuVXuQNs6JrN2H3U4391" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Escorredor Organizador de Louças">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Jogo de Taças -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Jogo de Taças 350ml</h3>
+                        <div class="gift-price">R$ 97,02</div>
+                        <div class="gift-installments">ou 12x de R$ 8,93</div>
+                        <a href="https://shopee.com.br/product/410530282/20299575656?d_id=1c1c6&uls_trackid=528836cs008m&utm_content=4SUS8aeELud9HKgKoPAHizx5ej9Z" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Jogo de Taças 350ml">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Obrigado por contribuir para o nosso lar!</p>
+        </footer>
+    </div>
+
+    <!-- Botão flutuante de contato -->
+    <div class="contact-btn" id="openContact">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+
+    <!-- Modal de Contato -->
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Entrar em Contato</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="contactFormElement">
+                <div class="form-group">
+                    <label for="name">Seu Nome</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="product">Produto</label>
+                    <input type="text" id="product" name="product">
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contact">Quem deseja contactar?</label>
+                    <select id="contact" name="contact" required>
+                        <option value="">Selecione...</option>
+                        <option value="Eduardo">Eduardo (+55 18 99142-6322)</option>
+                        <option value="Nika">Nika (+55 18 98134-3943)</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelContact">Cancelar</button>
+                    <button type="submit" class="btn">Enviar Mensagem</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle category visibility
+            const categoryHeaders = document.querySelectorAll('.category-header');
+            
+            categoryHeaders.forEach(header => {
+                header.addEventListener('click', function() {
+                    const category = this.parentElement;
+                    category.classList.toggle('active');
+                    
+                    // Store state in localStorage
+                    const categoryName = category.classList.contains('quarto') ? 'quarto' : 'cozinha';
+                    localStorage.setItem(categoryName, category.classList.contains('active'));
+                });
+            });
+            
+            // Load saved states
+            const quartoState = localStorage.getItem('quarto');
+            const cozinhaState = localStorage.getItem('cozinha');
+            
+            if (quartoState !== null) {
+                const quartoCategory = document.querySelector('.category.quarto');
+                quartoCategory.classList.toggle('active', quartoState === 'true');
+            }
+            
+            if (cozinhaState !== null) {
+                const cozinhaCategory = document.querySelector('.category.cozinha');
+                cozinhaCategory.classList.toggle('active', cozinhaState === 'true');
+            }
+            
+            // Modal functionality
+            const modal = document.getElementById('contactModal');
+            const openContactBtn = document.getElementById('openContact');
+            const closeModalBtn = document.querySelector('.close-modal');
+            const cancelContactBtn = document.getElementById('cancelContact');
+            const contactFormElement = document.getElementById('contactFormElement');
+            const productInput = document.getElementById('product');
+            const messageInput = document.getElementById('message');
+            
+            // Open modal from floating button
+            openContactBtn.addEventListener('click', function() {
+                productInput.value = '';
+                messageInput.value = 'Oi, eu sou [seu nome] e gostaria de entrar em contato com vocês sobre a lista de presentes!';
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Open modal from product button
+            const productButtons = document.querySelectorAll('.contact-product');
+            productButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productName = this.getAttribute('data-product');
+                    productInput.value = productName;
+                    messageInput.value = `Oi, eu sou [seu nome] e gostaria de presentear vocês com o produto "${productName}", ainda tem interesse em receber?`;
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal
+            function closeModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+            
+            closeModalBtn.addEventListener('click', closeModal);
+            cancelContactBtn.addEventListener('click', closeModal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            // Submit contact form
+            contactFormElement.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const name = document.getElementById('name').value;
+                const product = productInput.value;
+                const message = messageInput.value;
+                const contact = document.getElementById('contact').value;
+                
+                let phoneNumber = '';
+                let contactName = '';
+                
+                if (contact === 'Eduardo') {
+                    phoneNumber = '5518991426322';
+                    contactName = 'Eduardo';
+                } else if (contact === 'Nika') {
+                    phoneNumber = '5518981343943';
+                    contactName = 'Nika';
+                }
+                
+                const finalMessage = message.replace('[seu nome]', name).replace('[produto]', product);
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(finalMessage)}`;
+                
+                window.open(whatsappUrl, '_blank');
+                closeModal();
+            });
+            
+            // Update message when product changes
+            productInput.addEventListener('change', function() {
+                if (this.value) {
+                    messageInput.value = `Oi, eu sou [seu nome] e gostaria de presentear vocês com o produto "${this.value}", ainda tem interesse em receber?`;
+                } else {
+                    messageInput.value = 'Oi, eu sou [seu nome] e gostaria de entrar em contato com vocês sobre a lista de presentes!';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
