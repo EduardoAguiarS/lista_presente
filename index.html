@@ -16,6 +16,7 @@
             --success: #00b894;
             --category-quarto: #74b9ff;
             --category-cozinha: #55efc4;
+            --category-outros: #fd79a8;
         }
         
         * {
@@ -259,6 +260,10 @@
             background: var(--category-cozinha);
         }
         
+        .outros .category-icon {
+            background: var(--category-outros);
+        }
+
         .toggle-icon {
             transition: transform 0.3s ease;
         }
@@ -643,7 +648,7 @@
         </header>
         
         <!-- Quarto -->
-        <div class="category quarto">
+        <div class="category quarto active">
             <div class="category-header">
                 <div class="category-title">
                     <div class="category-icon">
@@ -749,7 +754,7 @@
         </div>
         
         <!-- Cozinha -->
-        <div class="category cozinha">
+        <div class="category cozinha active">
             <div class="category-header">
                 <div class="category-title">
                     <div class="category-icon">
@@ -828,7 +833,7 @@
                         <a href="https://www.mercadolivre.com.br/jogo-de-assadeiras-brasil-em-aluminio-com-revestimento-antiaderente-starflon-max-3-pecas-cor-grafite-tramontina/p/MLB27670124#polycard_client=search_best-seller&wid=MLB5157573752&sid=search" class="btn" target="_blank">
                             Ver Produto <i class="fas fa-external-link-alt"></i>
                         </a>
-                        <button class="btn btn-secondary contact-product" data-product="Fogão 4 Bocas Esmaltec Preto Ideal Super 4121">
+                        <button class="btn btn-secondary contact-product" data-product="Jogo de Assadeiras Tramontina">
                             Quero presentear <i class="fas fa-gift"></i>
                         </button>
                     </div>
@@ -846,7 +851,7 @@
                         <a href="https://www.mercadolivre.com.br/vitazza-boleira-com-pe-e-tampa-de-vidro-petalas-jasmin-32cm/p/MLB27967043?pdp_filters=item_id:MLB4222087202#is_advertising=true&searchVariation=MLB27967043&position=1&search_layout=grid&type=pad&tracking_id=c4486edc-833d-418b-83e3-04899fe08a98&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=N2FhZmYxZGEtMmY5OS00ZTU2LWFhZDAtYTI4NjEyYjc1Nzk3" class="btn" target="_blank">
                             Ver Produto <i class="fas fa-external-link-alt"></i>
                         </a>
-                        <button class="btn btn-secondary contact-product" data-product="Fogão 4 Bocas Esmaltec Preto Ideal Super 4121">
+                        <button class="btn btn-secondary contact-product" data-product="Vitazza Boleira Com Pé E Tampa De Vidro Pétalas Jasmin">
                             Quero presentear <i class="fas fa-gift"></i>
                         </button>
                     </div>
@@ -882,7 +887,7 @@
                         <a href="https://produto.mercadolivre.com.br/MLB-3682091421-xicara-jogo-6-unidades-pequena-cafe-espresso-preta-porcelana-_JM?searchVariation=182683789215#polycard_client=search-nordic&searchVariation=182683789215&position=17&search_layout=grid&type=item&tracking_id=cd9009d0-bda0-4ca6-94fd-4f1561321022" class="btn" target="_blank">
                             Ver Produto <i class="fas fa-external-link-alt"></i>
                         </a>
-                        <button class="btn btn-secondary contact-product" data-product="Conjunto Sala de Jantar Mesa Tampo de Madeira com 4 Cadeiras Havana Madesa">
+                        <button class="btn btn-secondary contact-product" data-product="Xícara Jogo 6 Unidades Pequena Café">
                             Quero presentear <i class="fas fa-gift"></i>
                         </button>
                     </div>
@@ -900,7 +905,7 @@
                         <a href="https://www.mercadolivre.com.br/escorredor-de-macarro-massa-inox-utensilios-de-cozinha-top/p/MLB24325070#polycard_client=search-nordic&searchVariation=MLB24325070&wid=MLB3913947469&position=15&search_layout=grid&type=product&tracking_id=369a2758-bc1e-4811-8efd-6fb711f51d49&sid=search" class="btn" target="_blank">
                             Ver Produto <i class="fas fa-external-link-alt"></i>
                         </a>
-                        <button class="btn btn-secondary contact-product" data-product="Conjunto Sala de Jantar Mesa Tampo de Madeira com 4 Cadeiras Havana Madesa">
+                        <button class="btn btn-secondary contact-product" data-product="Escorredor de Macarrão">
                             Quero presentear <i class="fas fa-gift"></i>
                         </button>
                     </div>
@@ -936,7 +941,7 @@
                         <a href="https://www.mercadolivre.com.br/cadencia-kit-15-potes-hermeticos-mantimentos-quadrado-cozinha-tampa-trava/p/MLB28546289?pdp_filters=item_id:MLB5213884944#is_advertising=true&searchVariation=MLB28546289&position=1&search_layout=grid&type=pad&tracking_id=7da87756-8040-4b0c-9b15-6e3742197b5a&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=NzQ5ZTZlN2EtNWNiZS00YThlLThhYmItZjdkNzcwYmIzMDQz" class="btn" target="_blank">
                             Ver Produto <i class="fas fa-external-link-alt"></i>
                         </a>
-                        <button class="btn btn-secondary contact-product" data-product="Porta Condimentos e Temperos">
+                        <button class="btn btn-secondary contact-product" data-product="Kit 15 Potes Herméticos Mantimentos Quadrado">
                             Quero presentear <i class="fas fa-gift"></i>
                         </button>
                     </div>
@@ -991,6 +996,74 @@
                             Ver Produto <i class="fas fa-external-link-alt"></i>
                         </a>
                         <button class="btn btn-secondary contact-product" data-product="Jogo de Taças 350ml">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Outros -->
+        <div class="category outros active">
+            <div class="category-header">
+                <div class="category-title">
+                    <div class="category-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    Outros
+                </div>
+                <div class="toggle-icon">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+            <div class="category-content">
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-broom"></i>
+                    </div>
+                    <!-- Perfect Mop Pro 16L  -->
+                    <div class="gift-content">
+                        <h3 class="gift-title">Perfect Mop Pro 16L</h3>
+                        <div class="gift-price">R$ 158,00</div>
+                        <div class="gift-installments">ou 5x de R$ 31,60</div>
+                        <a href="https://www.mercadolivre.com.br/perfect-mop-pro-16l-360-inox-balde-com-3-refis-azul/p/MLB19969083#polycard_client=search-nordic&searchVariation=MLB19969083&wid=MLB3297970619&position=25&search_layout=grid&type=product&tracking_id=ae4dc4e0-917a-4d91-afdc-c05c8889e36d&sid=search" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Perfect Mop Pro 16L">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Mangueira -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Mangueira Flex Verde Em Pvc 3 Camadas 1/2 20m Tramontina</h3>
+                        <div class="gift-price">R$ 73,23</div>
+                        <div class="gift-installments">ou 12x de R$ 7,18</div>
+                        <a href="https://www.mercadolivre.com.br/perfect-mop-pro-16l-360-inox-balde-com-3-refis-azul/p/MLB19969083#polycard_client=search-nordic&searchVariation=MLB19969083&wid=MLB3297970619&position=25&search_layout=grid&type=product&tracking_id=ae4dc4e0-917a-4d91-afdc-c05c8889e36d&sid=search" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Mangueira Flex Verde Em Pvc 3 Camadas 1/2 20m Tramontina">
+                            Quero presentear <i class="fas fa-gift"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Jogo De Ferramentas 169 Peças Com Maleta E Furadeira Parafusadeira Sem Fio A Bateria -->
+                <div class="gift-card">
+                    <div class="gift-image">
+                        <i class="fas fa-water"></i>
+                    </div>
+                    <div class="gift-content">
+                        <h3 class="gift-title">Jogo De Ferramentas 169 Peças Com Maleta E Furadeira Parafusadeira Sem Fio A Bateria</h3>
+                        <div class="gift-price">R$ 359,08</div>
+                        <div class="gift-installments">ou 7x de 51,30</div>
+                        <a href="https://www.mercadolivre.com.br/jogo-de-ferramentas-169-pecas-com-maleta-e-furadeira-parafusadeira-sem-fio-a-bateria-tb-12e-12v-38-10mm-the-black-tools/p/MLB38835569#polycard_client=search-nordic&searchVariation=MLB38835569&wid=MLB3802520525&position=5&search_layout=grid&type=product&tracking_id=177392a5-8b69-4f8f-b1b5-70ee2742f4a9&sid=search" class="btn" target="_blank">
+                            Ver Produto <i class="fas fa-external-link-alt"></i>
+                        </a>
+                        <button class="btn btn-secondary contact-product" data-product="Jogo De Ferramentas 169 Peças Com Maleta E Furadeira Parafusadeira Sem Fio A Bateria">
                             Quero presentear <i class="fas fa-gift"></i>
                         </button>
                     </div>
@@ -1055,7 +1128,15 @@
                     category.classList.toggle('active');
                     
                     // Store state in localStorage
-                    const categoryName = category.classList.contains('quarto') ? 'quarto' : 'cozinha';
+                    let categoryName;
+                    if (category.classList.contains('quarto')) {
+                        categoryName = 'quarto';
+                    } else if (category.classList.contains('cozinha')) {
+                        categoryName = 'cozinha';
+                    } else if (category.classList.contains('outros')) {
+                        categoryName = 'outros';
+                    }
+                    
                     localStorage.setItem(categoryName, category.classList.contains('active'));
                 });
             });
@@ -1063,6 +1144,12 @@
             // Load saved states
             const quartoState = localStorage.getItem('quarto');
             const cozinhaState = localStorage.getItem('cozinha');
+            const outrosState = localStorage.getItem('outros');
+
+            if (outrosState !== null) {
+                const outrosCategory = document.querySelector('.category.outros');
+                outrosCategory.classList.toggle('active', outrosState === 'true');
+            }
             
             if (quartoState !== null) {
                 const quartoCategory = document.querySelector('.category.quarto');
@@ -1087,6 +1174,7 @@
             openContactBtn.addEventListener('click', function() {
                 productInput.value = '';
                 messageInput.value = 'Oi, eu sou [seu nome] e gostaria de entrar em contato com vocês sobre a lista de presentes!';
+                modal.classList.remove('active');
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             });
