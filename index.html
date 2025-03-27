@@ -631,14 +631,73 @@
             0%, 100% { transform: translateY(0) rotate(15deg); }
             50% { transform: translateY(-20px) rotate(15deg); }
         }
+
+        .music-player {
+            position: fixed;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            z-index: 100;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .music-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            background: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        .music-info {
+            padding-right: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--dark);
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .music-info {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Flores animadas de fundo -->
     <div class="flor"></div>
     <div class="flor"></div>
     <div class="flor"></div>
     <div class="flor"></div>
+    
+    <!-- Player de música -->
+    <div class="music-player">
+        <div class="music-info">
+            Música: Pra Sempre Com Você - Jorge & Mateus`
+        </div>
+        <button class="music-btn" id="toggleMusic">
+            <i class="fas fa-music"></i>
+        </button>
+        <audio id="backgroundMusic" loop>
+            <source src="./Jorge & Mateus - Pra Sempre Com Você (Como Sempre Feito Nunca) [Vídeo Oficial].mp3" type="audio/mpeg">
+            Seu navegador não suporta o elemento de áudio.
+        </audio>
+    </div>
     
     <div class="container">
         <header>
@@ -1118,6 +1177,54 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Seu código JavaScript existente permanece aqui...
+
+            // Adicione este novo código no final da sua função DOMContentLoaded
+            const backgroundMusic = document.getElementById('backgroundMusic');
+            const toggleMusicBtn = document.getElementById('toggleMusic');
+            let isMusicPlaying = true;
+
+            // Tenta reproduzir a música automaticamente (pode não funcionar em alguns navegadores devido a políticas de autoplay)
+            function playMusic() {
+                const playPromise = backgroundMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(_ => {
+                        // Autoplay funcionou
+                        isMusicPlaying = true;
+                        toggleMusicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                    })
+                    .catch(error => {
+                        // Autoplay não foi permitido
+                        isMusicPlaying = false;
+                        toggleMusicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                    });
+                }
+            }
+
+            // Inicia a música quando a página carrega
+            playMusic();
+
+            // Controle do botão de música
+            toggleMusicBtn.addEventListener('click', function() {
+                if (isMusicPlaying) {
+                    backgroundMusic.pause();
+                    toggleMusicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+                } else {
+                    backgroundMusic.play();
+                    toggleMusicBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+                }
+                isMusicPlaying = !isMusicPlaying;
+            });
+
+            // Atualiza o ícone quando a música termina (por erro ou outras razões)
+            backgroundMusic.addEventListener('ended', function() {
+                isMusicPlaying = false;
+                toggleMusicBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            });
+        });
+
         document.addEventListener('DOMContentLoaded', function() {
             // Toggle category visibility
             const categoryHeaders = document.querySelectorAll('.category-header');
